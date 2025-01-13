@@ -107,17 +107,14 @@ fun DrawerItem(
     item: Screen.DrawerScreen,
     onDrawerItemClicked: () -> Unit
 ) {
-    val background = if(selected) Color.Gray else Color.White
+    val background = if(selected) Color.LightGray else Color.White
+    val borderColor = if(selected) Color.DarkGray else Color.White
+
     Row(
         Modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp, vertical = 16.dp)
-            .background(background)
-            .border(
-                width = 1.dp,
-                color = background,
-                shape = RoundedCornerShape(5.dp)
-            )
+            .padding(horizontal = 8.dp, vertical = 10.dp)
+            .background(background,  shape = RoundedCornerShape(25.dp))
             .clickable {
                 onDrawerItemClicked()
             }
@@ -126,13 +123,14 @@ fun DrawerItem(
         Icon(
             painter = painterResource(id = item.icon),
             contentDescription = item.dTitle,
-            modifier = Modifier.padding(end = 8.dp, top = 4.dp),
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 10.dp)
+
         )
 
         Text(
             text = item.dTitle,
             style = MaterialTheme.typography.h6,
-            modifier = Modifier.padding(end = 8.dp, top = 4.dp)
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 10.dp)
         )
     }
 }
