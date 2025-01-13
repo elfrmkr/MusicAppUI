@@ -55,6 +55,9 @@ fun MainView() {
     val navBackStackEntry by controller.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
+    val isDialogOpen = remember {
+        mutableStateOf(false)
+    }
     val currentScreen = remember {
         viewModel.currentScreen.value
     }
@@ -87,6 +90,7 @@ fun MainView() {
                         }
                         if(item.dRoute == "add_account") {
                             //open dialog
+                            isDialogOpen.value = true
                         } else {
                             controller.navigate(item.dRoute)
                             title.value = item.dTitle
@@ -97,6 +101,7 @@ fun MainView() {
         }
     ) {
        Navigation(navController = controller, viewModel = viewModel, pd = it)
+       AccountDialog(isDialogOpen = isDialogOpen)
     }
 }
 
@@ -114,7 +119,7 @@ fun DrawerItem(
         Modifier
             .fillMaxWidth()
             .padding(horizontal = 8.dp, vertical = 10.dp)
-            .background(background,  shape = RoundedCornerShape(25.dp))
+            .background(background, shape = RoundedCornerShape(25.dp))
             .clickable {
                 onDrawerItemClicked()
             }
