@@ -1,13 +1,11 @@
-package eu.tutorials.musicappui
+package eu.tutorials.musicappui.ui.theme
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,11 +32,13 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import androidx.navigation.Navigation
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import eu.tutorials.musicappui.MainViewModel
+import eu.tutorials.musicappui.Screen
+import eu.tutorials.musicappui.screensInDrawer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -67,7 +67,7 @@ fun MainView() {
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Home") },
+            TopAppBar(title = { Text(title.value) },
             navigationIcon = {
                 IconButton(onClick = {
                     // open the drawer
@@ -144,11 +144,10 @@ fun DrawerItem(
 fun Navigation(navController: NavController, viewModel: MainViewModel, pd: PaddingValues) {
     NavHost(
         navController = navController as NavHostController ,
-        startDestination = Screen.DrawerScreen.AddAccount.route ,
+        startDestination = Screen.DrawerScreen.Account.route ,
         modifier = Modifier.padding(pd)) {
 
             composable(Screen.DrawerScreen.AddAccount.route) {
-
         }
 
             composable(Screen.DrawerScreen.Subscription.route) {
@@ -156,7 +155,7 @@ fun Navigation(navController: NavController, viewModel: MainViewModel, pd: Paddi
         }
 
             composable(Screen.DrawerScreen.Account.route) {
-
+                AccountView()
         }
     }
 }
