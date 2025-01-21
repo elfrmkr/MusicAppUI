@@ -113,7 +113,6 @@ fun DrawerItem(
     onDrawerItemClicked: () -> Unit
 ) {
     val background = if(selected) Color.LightGray else Color.White
-    val borderColor = if(selected) Color.DarkGray else Color.White
 
     Row(
         Modifier
@@ -151,7 +150,7 @@ fun Navigation(navController: NavController, viewModel: MainViewModel, pd: Paddi
         }
 
             composable(Screen.DrawerScreen.Subscription.route) {
-
+                SubscriptionView()
         }
 
             composable(Screen.DrawerScreen.Account.route) {
