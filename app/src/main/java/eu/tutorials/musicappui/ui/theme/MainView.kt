@@ -177,10 +177,10 @@ fun Navigation(navController: NavController, viewModel: MainViewModel, pd: Paddi
         modifier = Modifier.padding(pd)) {
 
             composable(Screen.BottomScreen.Home.bRoute) {
-                Home()
+                HomeScreen()
             }
             composable(Screen.BottomScreen.Browse.bRoute) {
-
+                BrowseScreen()
             }
             composable(Screen.BottomScreen.Library.bRoute) {
 
